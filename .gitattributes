@@ -1,0 +1,22 @@
+# Forzar LF como fin de línea en todos los archivos de texto
+* text=auto eol=lf
+
+# Archivos específicos
+*.js     text eol=lf
+*.jsx    text eol=lf
+*.ts     text eol=lf
+*.tsx    text eol=lf
+*.css    text eol=lf
+*.html   text eol=lf
+*.json   text eol=lf
+*.md     text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+
+# Binarios - nunca tocar fin de línea
+*.png    binary
+*.jpg    binary
+*.jpeg   binary
+*.gif    binary
+*.ico    binary
+*.pdf    binary 
