@@ -1,16 +1,21 @@
 {
   "files": {
-    "main.css": "/Freya-App-Full/static/css/main.500c0758.css",
-    "main.js": "/Freya-App-Full/static/js/main.7e68a484.js",
+    "main.css": "/Freya-App-Full/static/css/main.ca0826a1.css",
+    "main.js": "/Freya-App-Full/static/js/main.7fd080f7.js",
     "static/media/MegabyteBold.otf": "/Freya-App-Full/static/media/MegabyteBold.b5bf70c59f195d33c8e5.otf",
     "static/media/Gidole-Regular.ttf": "/Freya-App-Full/static/media/Gidole-Regular.08bea7a124352fbf8bfa.ttf",
+    "static/media/ranura.png": "/Freya-App-Full/static/media/ranura.b3c9f5f9c41ff238f8f2.png",
+    "static/media/pinguino.png": "/Freya-App-Full/static/media/pinguino.824aa590371d05beec0f.png",
+    "static/media/rana.png": "/Freya-App-Full/static/media/rana.a3f5c2f373fafc51b17b.png",
+    "static/media/erizo.png": "/Freya-App-Full/static/media/erizo.b501e811380d2faf259a.png",
+    "static/media/conejillo-de-indias.png": "/Freya-App-Full/static/media/conejillo-de-indias.c45e1b35f5b544cc10d8.png",
     "static/media/controlar.svg": "/Freya-App-Full/static/media/controlar.a9423def4c7e9f1d791c832b06b33ee6.svg",
     "index.html": "/Freya-App-Full/index.html",
-    "main.500c0758.css.map": "/Freya-App-Full/static/css/main.500c0758.css.map",
-    "main.7e68a484.js.map": "/Freya-App-Full/static/js/main.7e68a484.js.map"
+    "main.ca0826a1.css.map": "/Freya-App-Full/static/css/main.ca0826a1.css.map",
+    "main.7fd080f7.js.map": "/Freya-App-Full/static/js/main.7fd080f7.js.map"
   },
   "entrypoints": [
-    "static/css/main.500c0758.css",
-    "static/js/main.7e68a484.js"
+    "static/css/main.ca0826a1.css",
+    "static/js/main.7fd080f7.js"
   ]
 }
