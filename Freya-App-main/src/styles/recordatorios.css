@@ -1,0 +1,690 @@
+/* ===== ESTILOS DEL MÓDULO DE RECORDATORIOS ===== */
+
+/* ===== VARIABLES CSS GLOBALES ===== */
+/* Definición de colores y valores reutilizables */
+:root {
+  --primary-color: #5f8cff;
+  --secondary-color: #f1f7fb;
+  --danger-color: #f72585;
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --card-border: rgba(255, 255, 255, 0.2);
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --transition: 0.3s ease;
+}
+
+/* ===== ESTILOS GLOBALES ===== */
+/* Estilos base del body */
+body {
+  background-color: #0d17;
+  color: var(--secondary-color);
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== TÍTULOS ===== */
+/* Título principal fuera del contenedor */
+.main-title-outside {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Título principal dentro del contenedor */
+.main-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #222;
+}
+
+/* Título del contenedor */
+.container-title {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--secondary-color);
+  font-weight: 600;
+  width: 100%;
+  flex-grow: 1;
+  text-align: left;
+}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+/* Contenedor principal de la aplicación */
+.app-container {
+  display: flex;
+  justify-content: flex-start; /* CAMBIAR A flex-start */
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem; /* O 32px */
+  background-color: #141f24;
+  min-height: 100vh; /* O 911px */
+  margin-top: 0;
+}
+
+/* ===== TARJETA PRINCIPAL ===== */
+/* Tarjeta principal del módulo */
+.main-card {
+  background: #fff !important;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(60,60,120,0.10);
+  padding: 48px 38px 38px 38px;
+  margin: 40px auto 0 auto;
+  max-width: 1400px;
+}
+
+/* Wrapper del contenido de la tarjeta */
+.card-content-wrapper {
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HEADER DE LA TARJETA ===== */
+/* Header principal de la tarjeta */
+.main-card-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+/* ===== BOTÓN DE AGREGAR ===== */
+/* Botón para agregar nuevo recordatorio */
+.add-button {
+  background: #2563eb;
+  color: #fff;
+  padding: 8px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: none;
+  transition: background 0.18s, color 0.18s;
+  margin-left: 18px;
+}
+
+/* Efecto hover del botón de agregar */
+.add-button:hover {
+  background: #1746a2;
+}
+
+/* ===== TARJETAS DE RECORDATORIOS ===== */
+/* Tarjeta individual de recordatorio */
+.reminder-card {
+  background: #fff;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(60,60,120,0.13);
+  color: #222;
+  padding: 38px 32px 28px 32px;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  max-width: 100%;
+  transition: box-shadow 0.18s;
+}
+
+/* Estado completado de la tarjeta */
+.reminder-card.completed {
+  background: #f6f7fa;
+  color: #bdbdbd;
+  opacity: 1;
+  position: relative;
+}
+
+/* Título y descripción tachados cuando está completado */
+.reminder-card.completed .reminder-title,
+.reminder-card.completed .reminder-description {
+  text-decoration: line-through;
+  color: #bdbdbd;
+}
+
+/* Etiqueta de tipo tachada cuando está completado */
+.reminder-card.completed .reminder-type-label {
+  background: #e5e7eb !important;
+  color: #bdbdbd !important;
+}
+
+/* Botón de estado cuando está completado */
+.reminder-card.completed .reminder-actions .status-btn {
+  background: none;
+  color: #22c55e;
+  border: none;
+  font-size: 2rem;
+  box-shadow: none;
+}
+
+/* ===== CONTENIDO DE LA TARJETA ===== */
+/* Título del recordatorio */
+.reminder-title {
+  color: #222;
+  font-size: 1.22rem;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+
+/* Descripción del recordatorio */
+.reminder-description {
+  color: #444;
+  font-size: 1.08rem;
+  margin-top: 0;
+}
+
+/* Footer de la tarjeta */
+.reminder-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Fecha del recordatorio */
+.reminder-date {
+  color: #bdbdbd !important;
+  font-size: 0.95rem;
+  margin-left: 2px;
+}
+
+/* ===== BOTONES DE ACCIÓN ===== */
+/* Botones de editar y eliminar */
+.edit-btn,
+.delete-btn {
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.18rem;
+  border: none;
+  margin: 0 2px;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s;
+  box-shadow: none;
+  cursor: pointer;
+  background: none;
+  color: #6b7280;
+}
+
+/* Botón de editar (amarillo) */
+.edit-btn {
+  background: #facc15;
+  color: #1e293b;
+}
+
+/* Efecto hover del botón de editar */
+.edit-btn:hover {
+  background: #fde047;
+}
+
+/* Botón de eliminar (rojo) */
+.delete-btn {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* Efecto hover del botón de eliminar */
+.delete-btn:hover {
+  background: #b91c1c;
+}
+
+.reminder-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.reminder-header-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reminder-header-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+}
+
+.reminder-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: 10px;
+}
+
+.status-btn {
+  background: none;
+  color: #22c55e;
+  border: none;
+}
+
+.status-btn.completed {
+  color: #22c55e;
+  background: none;
+  border: none;
+}
+
+.status-btn:hover, .edit-btn:hover, .delete-btn:hover {
+  background: #f3f4f6;
+  color: #2563eb;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.reminder-form {
+  margin: 2rem auto;
+  max-width: 600px;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--card-border);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-sm);
+  color: var(--secondary-color);
+  font-family: 'Roboto', sans-serif;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(241, 247, 251, 0.6);
+}
+
+.add-btn:hover {
+  background-color: #4c73d3;
+}
+
+.empty-state {
+  color: #64748b !important;
+  font-size: 1.18rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 38px 0 38px 0;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reminders-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 18px;
+  width: 100%;
+}
+
+.status-btn {
+  background-color: transparent;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  padding: 0.25rem;
+  border: 2px solid var(--primary-color);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.status-btn.completed {
+  background-color: #5fff78;
+  color: rgb(0, 0, 0);
+  transform: scale(1.05);
+}
+
+.status-btn:hover {
+  background-color: rgba(95, 140, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-container {
+  background-color: #1f3038;
+  color: #f8fafc;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid #334155;
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #f8fafc;
+}
+
+.modal-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.modal-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: #94a3b8;
+}
+
+.modal-form input,
+.modal-form textarea {
+  color: #f8fafc;
+  background-color: #141f24;
+  border: 1px solid #475569;
+  padding: 0.75rem;
+  border-radius: var(--border-radius-sm);
+  width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+.modal-form input::placeholder,
+.modal-form textarea::placeholder {
+  color: #94a3b8;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.modal-actions button {
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.modal-actions .cancel-btn {
+  background-color: transparent;
+  color: #94a3b8;
+  border: 1px solid #475569;
+}
+
+.modal-actions .cancel-btn:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.modal-actions .save-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+}
+
+.modal-actions .save-btn:hover {
+  background-color: #4c73d3;
+}
+
+.invalid-field {
+  border-color: #f72585 !important;
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+@media (max-width: 1100px) {
+  .reminders-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  body, html {
+    overflow-x: hidden !important;
+  }
+  .dashboard__content,
+  .dashboard__container,
+  .tabs-pill {
+    max-width: 100vw;
+    width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+  }
+  .reminders-container {
+    grid-template-columns: 1fr;
+  }
+  .add-button {
+    padding: 6px 13px;
+    font-size: 0.97rem;
+    border-radius: 7px;
+    margin-left: 0;
+    width: auto;
+    min-width: 0;
+  }
+  .main-title {
+    font-size: 1.45rem !important;
+  }
+  .main-title + p {
+    font-size: 1rem !important;
+  }
+  .tab-badge {
+    min-width: 22px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  .tab-pill {
+    width: 50%;
+    min-width: 0;
+    justify-content: center;
+    padding: 6px 0;
+  }
+  .tabs-pill {
+    width: 100% !important;
+  }
+}
+
+.container-title {
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.main-card-header {
+  margin-bottom: 2rem;
+}
+
+.button-container {
+  width: 140px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.reminder-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.5rem;
+}
+
+.char-counter {
+  font-size: 0.8rem;
+  color: #666;
+  margin-left: 8px;
+}
+
+/* Etiqueta de tipo */
+.reminder-type-label {
+  display: inline-block;
+  border-radius: 10px;
+  padding: 2px 14px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  min-width: 70px;
+  text-align: center;
+  margin-right: 8px;
+  background: #f3f6fa;
+}
+
+/* Tabs tipo píldora con íconos */
+.tabs-pill {
+  display: flex;
+  gap: 0;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.08);
+  border: 1.5px solid #e5e7eb;
+  overflow: hidden;
+  margin-bottom: 38px;
+  width: fit-content;
+}
+.tab-pill {
+  padding: 8px 22px;
+  background: none;
+  border: none;
+  color: #64748b;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  justify-content: center;
+}
+.tab-pill.active {
+  background: #e8f0fe;
+  color: #2563eb;
+}
+.tab-pill .tab-icon {
+  font-size: 1.08em;
+  margin-right: 6px;
+}
+
+/* Títulos de sección destacados y con margen */
+.reminders-section-title {
+  margin-top: 48px;
+  margin-bottom: 18px;
+  font-size: 1.38rem;
+  color: #222;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Fondo general */
+.app-container, .main-card {
+  background: #f8fafc !important;
+}
+
+/* Títulos de sección visibles */
+.main-card > div[style*='fontWeight:600'] {
+  margin-top: 32px;
+  margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: #222 !important;
+  font-weight: 700 !important;
+}
+
+/* Mejorar contraste de textos secundarios */
+.reminder-date, .reminder-description {
+  color: #64748b !important;
+}
+
+.recordatorios-dashboard__subtitle {
+  font-size: 1rem !important;
+}
+
+.tab-badge {
+  background: #fee2e2;
+  color: #b91c1c;
+  border-radius: 8px;
+  padding: 2px 10px;
+  margin-left: 8px;
+  font-weight: 600;
+  font-size: 0.98em;
+  display: flex;
+  align-items: center;
+  min-width: 22px;
+  height: 1.6em;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+@media (max-width: 1366px) {
+  .reminder-header {
+    flex-wrap: wrap;
+    align-items: flex-start !important;
+  }
+  .reminder-actions {
+    margin-left: 0 !important;
+    gap: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    position: static !important;
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    max-width: 100%;
+  }
+  .edit-btn, .delete-btn, .status-btn {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    font-size: 1.15rem !important;
+    margin: 0 2px !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+    position: static !important;
+  }
+}

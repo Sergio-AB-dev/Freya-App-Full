@@ -1,0 +1,591 @@
+/* ===== ESTILOS DEL MÓDULO DE CONFIGURACIÓN ===== */
+
+/* === Contenedor de la Página de Configuración === */
+/* Wrapper principal de la página de configuración */
+.configuracion-wrapper {
+  background-color: #f8fafc; /* Fondo gris claro */
+  min-height: 100vh;
+  padding: 32px 48px;
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  font-family: 'gidole', Arial, sans-serif;
+}
+
+/* Contenido principal con ancho máximo */
+.main-content-config {
+  max-width: 1000px;
+  width: 100%;
+}
+
+/* === Encabezado de la Página === */
+/* Título principal de la página */
+.page-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+/* Descripción de la página */
+.page-header p {
+  font-size: 1rem;
+  color: #6b7280; /* Gris medio */
+  margin-top: 4px;
+}
+
+/* === Pestañas (Tabs) === */
+/* Contenedor de las pestañas */
+.tabs {
+  display: flex;
+  border-bottom: 1px solid #d1d5db;
+  margin-top: 32px;
+}
+
+/* Botón de cada pestaña */
+.tab-button {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6b7280;
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  margin-bottom: -1px; /* Para que el borde inferior se alinee */
+  transition: color 0.2s, border-color 0.2s;
+}
+
+/* Icono de la pestaña */
+.tab-button svg {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+/* Efecto hover de la pestaña */
+.tab-button:hover {
+  color: #374151;
+}
+
+/* Estado activo de la pestaña */
+.tab-button.active {
+  color: #3b82f6;
+  border-bottom-color: #3b82f6;
+}
+
+/* === Contenido de la Pestaña === */
+/* Contenedor del contenido de cada pestaña */
+.tab-content {
+  padding-top: 32px;
+}
+
+/* Placeholder para pestañas sin contenido */
+.placeholder-content {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 48px;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* Título del placeholder */
+.placeholder-content h2 {
+  color: #111827;
+}
+
+/* === Sección de Notificaciones === */
+/* Contenedor de la sección de notificaciones */
+.notifications-section {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+/* Lista de notificaciones */
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Elemento individual de notificación */
+.notification-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+}
+
+/* Borde inferior para todos los items excepto el último */
+.notification-item:not(:last-child) {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Texto de la notificación */
+.notification-text h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #111827;
+  margin: 0 0 4px 0;
+}
+
+/* Descripción de la notificación */
+.notification-text p {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* === Toggle Switch === */
+/* Contenedor del switch de toggle */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px; /* Ancho del switch */
+  height: 24px; /* Alto del switch */
+}
+
+/* Input oculto del switch */
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Slider del switch */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+/* Círculo del slider */
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px; /* Tamaño del círculo */
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+/* Estado activo del switch */
+input:checked + .slider {
+  background-color: #3b82f6; /* Color azul cuando está activo */
+}
+
+/* Focus del switch */
+input:focus + .slider {
+  box-shadow: 0 0 1px #3b82f6;
+}
+
+/* Movimiento del círculo cuando está activo */
+input:checked + .slider:before {
+  transform: translateX(20px); /* Distancia que se mueve el círculo */
+}
+
+/* === Sección de Seguridad === */
+/* Contenedor de la sección de seguridad */
+.security-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Tarjeta de configuración de seguridad */
+.security-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+/* Elemento individual de configuración de seguridad */
+.security-setting-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Alinea al inicio para el form de contraseña */
+  padding: 24px 0;
+}
+
+/* Borde inferior para todos los items excepto el último */
+.security-setting-item:not(:last-child) {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Texto de la configuración */
+.security-setting-item .setting-text {
+  flex: 1;
+  padding-right: 24px;
+}
+
+.security-setting-item .setting-text h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #111827;
+  margin: 0 0 4px 0;
+}
+
+.security-setting-item .setting-text p {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.password-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 300px;
+}
+
+.password-fields label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: -8px; /* Reduce espacio con el input */
+}
+
+.password-fields input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+}
+
+.phone-input-wrapper input {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  min-width: 300px; /* Alinea con los campos de contraseña */
+}
+
+.animated-field {
+  animation: fadeInDown 0.4s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.active-sessions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.session-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.security-actions {
+  justify-content: flex-end;
+}
+
+/* === Danger Zone === */
+.danger-zone {
+  border: 1px solid #fecaca; /* Rojo claro */
+  background-color: #fff5f5; /* Rojo muy claro */
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.danger-zone-text {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.danger-zone-text .danger-icon {
+  color: #ef4444; /* Rojo */
+  font-size: 1.5rem;
+}
+
+.danger-zone-text h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #991b1b; /* Rojo oscuro */
+  margin: 0 0 4px 0;
+}
+
+.danger-zone-text p {
+  font-size: 0.875rem;
+  color: #b91c1c; /* Rojo oscuro */
+  margin: 0;
+}
+
+/* === Botones === */
+.btn-primary {
+  background-color: #3b82f6; /* Azul */
+  color: #ffffff;
+  border: 1px solid transparent;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #2563eb; /* Azul más oscuro */
+}
+
+.btn-primary:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+  background-color: #f9fafb;
+}
+
+.btn-danger {
+  background-color: #ef4444; /* Rojo */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-danger:hover {
+  background-color: #dc2626; /* Rojo más oscuro */
+}
+
+/* === Sección de Perfil === */
+.profile-section {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.section-subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 4px;
+  margin-bottom: 24px;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+/* Sección del Avatar */
+.avatar-section {
+  text-align: center;
+}
+
+.avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  background-color: #e5e7eb;
+  border-radius: 50%;
+  margin: 0 auto 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 3rem; /* Aumenta el tamaño del ícono de usuario */
+  overflow: hidden; /* Clave para que la imagen no se salga del círculo */
+}
+
+/* Nuevo estilo para la imagen de vista previa */
+.avatar-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Asegura que la imagen cubra el círculo sin deformarse */
+}
+
+.avatar-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Sección del Formulario */
+.form-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.bio-group {
+  grid-column: 1 / -1; /* La biografía ocupa todo el ancho */
+}
+
+.form-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #111827;
+  background-color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:read-only {
+  background-color: #f3f4f6; /* Fondo gris para campos no editables */
+  cursor: not-allowed;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* === Responsividad === */
+@media (max-width: 900px) {
+  .configuracion-wrapper {
+    padding: 24px;
+  }
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .form-fields {
+    grid-template-columns: 1fr;
+  }
+}
+
+.email-edit-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 320px;
+}
+
+.email-edit-input {
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  min-width: 240px;
+}
+
+.email-current {
+  font-size: 0.95rem;
+  color: #374151;
+  margin-right: 8px;
+}
+
+@media (max-width: 600px) {
+  .email-edit-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .email-edit-input {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .main-title {
+    font-size: 1.45rem !important;
+    text-align: left;
+    margin-bottom: 0.2em;
+  }
+  .main-title + p {
+    font-size: 1rem !important;
+  }
+  .password-fields {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .password-fields input {
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+} 

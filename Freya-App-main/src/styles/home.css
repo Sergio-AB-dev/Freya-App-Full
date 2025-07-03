@@ -1,0 +1,885 @@
+/* ===== ESTILOS DE LA PÁGINA DE INICIO ===== */
+
+/* ===== SECCIÓN DE SALUDO ===== */
+/* Mensaje de saludo principal */
+.saludo {
+    font-family: "gidole", sans-serif;
+    color: #f1f7fb;
+    width: 100%;
+    text-align: center;
+    font-size: 4svw;
+    margin-top: 50px;
+}
+
+/* Contenedor del mensaje de bienvenida */
+.saludo__bienvenida {
+    margin: auto;
+    width: 70%;
+}
+
+/* Contenedor de los puntos animados */
+.saludo__bienvenida--dots {
+    font-size: 6svw;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    display: inline-block;
+    width: 1.5em; /* Espacio reservado para los puntos */
+    text-align: left;
+}
+
+/* Pseudo-elemento para la animación de puntos */
+.saludo__bienvenida--dots::after {
+    content: "";
+    display: inline-block;
+    animation: dotsAnimation 1.5s infinite steps(4);
+}
+
+/* Animación de los puntos suspensivos */
+@keyframes dotsAnimation {
+    0% { content: ""; }
+    25% { content: "."; }
+    50% { content: ".."; }
+    75% { content: "..."; }
+    100% { content: ""; }
+}
+
+/* ===== BOTONES DE ACCIÓN ===== */
+/* Contenedor de botones */
+.saludo__botones {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Estilo base de los botones */
+.saludo__boton {
+    margin: 40px 30px 0 0;
+    width: 215px;
+    height: 51px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0px 7px 0px 0px rgba(255, 255, 255, 0.52);
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: black;
+}
+
+/* Botón de creación (naranja) */
+.boton--creacion {
+    background-color: #ff8002;
+}
+
+/* Botón de inicio (azul) */
+.boton--inicio {
+    background-color: #1cb0f6;
+}
+
+/* ===== SEPARADOR VISUAL ===== */
+/* Contenedor del separador */
+.separador__saludo {
+    width: 100%;
+    background-color: #1cb0f6
+}
+
+/* Imagen del separador */
+.separador__saludo img {
+    width: 100%;
+}
+
+/* ===== SECCIÓN DE DESCRIPCIÓN ===== */
+/* Contenedor principal de descripción */
+.descripcion {
+    background-color: #1cb0f6;
+    font-family: "gidole", sans-serif;
+    padding-bottom: 30px;
+}
+
+/* Título de la sección de descripción */
+.descripcion__titulo {
+    color: black;
+    font-size: 4svw;
+    text-align: center;
+}
+
+/* Contenedor de todas las tarjetas de descripción */
+.descripcion__container--all {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* Tarjeta individual de descripción */
+.descripcion__container {
+    margin: 50px 0 0 20px;
+    width: 316px;
+    height: 550px;
+    background-color: white;
+    border: 2px solid black;
+    box-shadow: 0px 11px 0px 0px rgba(0,0,0,0.75);
+    border-radius: 20px 20px 20px 20px;
+    margin-right: 18px;
+    text-align: center;
+    padding: 6px;
+}
+
+/* Imagen dentro de la tarjeta */
+.descripcion__container img {
+    width: 221px;
+}
+
+/* Texto de la tarjeta */
+.descripcion__container--text {
+    font-size: 23px;
+    color: black;
+}
+
+/* Título del texto de la tarjeta */
+.descripcion__container--text--title {
+    font-weight: bolder;
+    margin-bottom: 25px;
+    margin-top: 30px;
+    color: black; /* Añade esta línea para el color negro */
+}
+
+/* Texto destacado en naranja */
+.descripcion__container--text p span {
+    color: #ff8002;
+}
+
+/* ===== RESPONSIVE DESIGN - PANTALLAS PEQUEÑAS ===== */
+@media (max-width: 1030px) {
+    /* Ajusto el tamaño del saludo */
+    .saludo {
+        font-size: 5svw;
+    }
+
+    /* Ajusto el tamaño del título de descripción */
+    .descripcion__titulo {
+        font-size: 5svw;
+    }
+
+    /* Ajusto el margen de los botones */
+    .saludo__boton {
+        margin: 40px 0 0 0;
+    }
+
+    /* Cambio a layout vertical para los botones */
+    .saludo__botones {
+    flex-direction: column;
+    align-items: center;}
+
+    /* Cambio a layout vertical para las tarjetas */
+    .descripcion__container--all {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* ===== LAYOUT DEL DASHBOARD ===== */
+/* Contenedor principal del dashboard */
+.dashboard__container {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: 'gidole', Arial, sans-serif;
+}
+
+/* Barra lateral del dashboard */
+.dashboard__sidebar {
+  width: 220px;
+  background: #fff;
+  border-right: 1.5px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0 0 0;
+}
+
+/* Logo del sidebar */
+.sidebar__logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0 32px 32px 32px;
+  color: #222;
+}
+
+/* Navegación del sidebar */
+.sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Elementos de navegación */
+.sidebar__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 32px;
+  color: #374151;
+  font-size: 1.08rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+/* Estados activo y hover del sidebar */
+.sidebar__item.active, .sidebar__item:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+/* Contenido principal del dashboard */
+.dashboard__main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header del dashboard */
+.dashboard__header {
+  height: 56px;
+  background: #fff;
+  border-bottom: 1.5px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 32px;
+}
+
+/* Lado derecho del header */
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Iconos del header */
+.header__icon {
+  font-size: 1.5rem;
+  position: relative;
+}
+
+/* Punto de notificación */
+.header__notif-dot {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+/* Usuario del header */
+.header__user {
+  width: 36px;
+  height: 36px;
+  background: #e0e7ef;
+  color: #2563eb;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Contenido del dashboard */
+.dashboard__content {
+  padding: 32px 32px 0 32px;
+}
+
+/* Título del dashboard */
+.dashboard__title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 2px;
+  color: #222;
+}
+
+/* Subtítulo del dashboard */
+.dashboard__subtitle {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin-bottom: 28px;
+}
+
+/* Grid de resumen */
+.dashboard__resumen {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+/* Tarjeta de resumen */
+.resumen__card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.06);
+  padding: 22px 24px 18px 24px;
+  min-width: 200px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1.5px solid #e5e7eb;
+}
+
+/* Icono de resumen */
+.resumen__icon {
+  font-size: 2.1rem;
+  color: #2563eb;
+}
+
+/* Información de resumen */
+.resumen__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* Valor del resumen */
+.resumen__valor {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Título del resumen */
+.resumen__titulo {
+  font-size: 1.08rem;
+  color: #222;
+}
+
+/* Descripción del resumen */
+.resumen__desc {
+  font-size: 0.98rem;
+  color: #64748b;
+}
+
+/* Tabs del dashboard */
+.dashboard__tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+/* Tab individual */
+.tab {
+  padding: 8px 22px;
+  background: #f3f6fa;
+  border: none;
+  border-radius: 8px;
+  color: #2563eb;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+/* Estados activo, focus y hover de los tabs */
+.tab.active, .tab:focus, .tab:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+/* Grid de materias */
+.dashboard__materias-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* Tarjeta de materia */
+.materia__card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.06);
+  padding: 18px 24px 18px 24px;
+  border: 1.5px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Nombre de la materia */
+.materia__nombre {
+  font-size: 1.1rem;
+  color: #222;
+  font-weight: 500;
+}
+
+/* Nota de la materia */
+.materia__nota {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Fondo de la barra de progreso */
+.materia__progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Barra de progreso */
+.materia__progress {
+  height: 100%;
+  border-radius: 8px 0 0 8px;
+  transition: width 0.4s;
+}
+
+/* Barra de progreso extra */
+.materia__progress-extra {
+  height: 100%;
+  border-radius: 0 8px 8px 0;
+  transition: width 0.4s;
+}
+
+/* Placeholder para eventos */
+.dashboard__eventos-placeholder {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.06);
+  padding: 32px;
+  text-align: center;
+  color: #64748b;
+  font-size: 1.2rem;
+  border: 1.5px solid #e5e7eb;
+}
+
+/* Estilos para pantallas medianas */
+@media (max-width: 1100px) {
+  /* Cambio a layout vertical para resumen y materias */
+  .dashboard__resumen, .dashboard__materias-grid {
+    flex-direction: column;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Estilos para pantallas pequeñas (móviles) */
+@media (max-width: 800px) {
+  /* Cambio a layout vertical del dashboard */
+  .dashboard__container {
+    flex-direction: column;
+  }
+  
+  /* Barra lateral horizontal en móviles */
+  .dashboard__sidebar {
+    display: none;
+    flex-direction: column !important;
+    width: 220px !important;
+    min-width: 180px;
+    max-width: 90vw;
+    padding: 24px 0 0 0;
+  }
+  .dashboard__sidebar.sidebar--open {
+    display: flex !important;
+    transform: translateX(0) !important;
+  }
+  .sidebar-overlay {
+    display: block !important;
+  }
+  .header__menu-btn {
+    display: block !important;
+  }
+  .sidebar__nav {
+    flex-direction: column !important;
+    gap: 8px !important;
+    align-items: flex-start !important;
+    width: 100%;
+    margin-top: 24px;
+  }
+  .sidebar__item {
+    width: 100%;
+    padding: 16px 24px !important;
+    font-size: 1.1rem !important;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    border-radius: 8px;
+    margin: 0;
+  }
+  .sidebar__item span[role="img"] {
+    font-size: 1.4em;
+  }
+  
+  /* Ajusto el padding del logo */
+  .sidebar__logo {
+    padding: 0 16px;
+  }
+  
+  /* Navegación horizontal en móviles */
+  .sidebar__nav {
+    flex-direction: row;
+    gap: 0;
+  }
+  
+  /* Elimino padding del contenido principal */
+  .dashboard__main {
+    padding: 0;
+  }
+  
+  /* Ajusto el padding del contenido */
+  .dashboard__content {
+    padding: 10px 2vw 0 2vw;
+  }
+  .dashboard__title {
+    font-size: 1.4rem;
+    text-align: left;
+    margin-bottom: 2px;
+  }
+  .dashboard__subtitle {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+  /* Tarjetas y recomendaciones apiladas */
+  .dashboard__content > div:first-child {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    margin-bottom: 16px !important;
+    width: 100% !important;
+  }
+  .dashboard__content > div:first-child > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 auto 0 auto !important;
+    box-sizing: border-box;
+  }
+  .dashboard__content > div:first-child > div:nth-child(2) {
+    order: 1;
+  }
+  .resumen__card {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: left !important;
+    padding: 22px 8px !important;
+    gap: 0px !important;
+  }
+  .resumen__card img {
+    margin: 0 0 0 0 !important;
+    display: block;
+    height: 110px !important;
+    max-width: 110px !important;
+    object-fit: contain !important;
+  }
+  .resumen__info {
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: auto !important;
+  }
+  .resumen__valor {
+    font-size: 4.2rem !important;
+    font-weight: 700;
+    margin-bottom: 0.2em;
+    line-height: 1.1;
+  }
+  .resumen__titulo {
+    font-size: 1.5rem !important;
+    font-weight: 500;
+    margin-bottom: 0.1em;
+    line-height: 1.1;
+  }
+  .resumen__desc {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.1em;
+    line-height: 1.1;
+  }
+  /* Carrusel de recomendaciones */
+  .dashboard__content > div:first-child > div:nth-child(2) {
+    padding: 10px 0 10px 0 !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    overflow-x: auto !important;
+  }
+  .dashboard__content > div:first-child > div:nth-child(2) > div > div {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+  }
+  .dashboard__content > div:first-child > div:nth-child(2) > div > div > div {
+    min-width: 92vw !important;
+    max-width: 97vw !important;
+    margin-right: 8px !important;
+    margin-left: 0 !important;
+    padding: 16px 10px !important;
+    font-size: 1.05rem !important;
+    box-sizing: border-box;
+  }
+  /* Indicadores del carrusel */
+  .dashboard__content > div:first-child > div:nth-child(2) > div + div {
+    margin-top: 10px !important;
+  }
+  /* Gráfica y calendario apilados */
+  .dashboard__tabs + div {
+    flex-direction: column !important;
+    gap: 18px !important;
+    margin-top: 10px !important;
+  }
+  .dashboard__tabs + div > div {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 auto 0 auto !important;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px #0001;
+    padding: 12px 4px !important;
+  }
+  .dashboard__tabs {
+    margin-bottom: 10px !important;
+    overflow-x: auto;
+  }
+  /* Centrar el calendario y su contenido */
+  .dashboard__tabs + div > div:last-child {
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+  }
+  .dashboard__tabs + div > div:last-child h3 {
+    text-align: center !important;
+    width: 100%;
+    margin-bottom: 12px !important;
+  }
+  .calendario-wrapper {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* Estilos para pantallas muy pequeñas (menos de 600px) */
+@media (max-width: 600px) {
+  .dashboard__content {
+    padding: 8px 12px 0 12px;
+  }
+  
+  .dashboard__title {
+    font-size: 1.2rem;
+  }
+  
+  .dashboard__subtitle {
+    font-size: 0.9rem;
+  }
+  
+  /* Ajustar el carrusel para pantallas muy pequeñas */
+  .dashboard__content > div:first-child > div:nth-child(2) > div > div > div {
+    min-width: 88vw !important;
+    max-width: 95vw !important;
+    padding: 12px 8px !important;
+  }
+  
+  /* Ajustar la gráfica para pantallas muy pequeñas */
+  .dashboard__tabs + div > div:first-child {
+    height: 280px !important;
+    padding: 16px 8px !important;
+  }
+  
+  /* Ajustar el calendario para pantallas muy pequeñas */
+  .dashboard__tabs + div > div:last-child {
+    height: 280px !important;
+    padding: 12px 8px !important;
+  }
+  
+  /* Ajustar el wrapper del calendario */
+  .calendario-wrapper {
+    transform: scale(0.75) !important;
+  }
+}
+
+/* Estilos para pantallas extra pequeñas (menos de 400px) */
+@media (max-width: 400px) {
+  .dashboard__content {
+    padding: 6px 8px 0 8px;
+  }
+  
+  .dashboard__title {
+    font-size: 1.1rem;
+  }
+  
+  .dashboard__subtitle {
+    font-size: 0.85rem;
+  }
+  
+  /* Ajustar el carrusel para pantallas extra pequeñas */
+  .dashboard__content > div:first-child > div:nth-child(2) > div > div > div {
+    min-width: 85vw !important;
+    max-width: 92vw !important;
+    padding: 10px 6px !important;
+  }
+  
+  /* Ajustar la gráfica para pantallas extra pequeñas */
+  .dashboard__tabs + div > div:first-child {
+    height: 250px !important;
+    padding: 12px 6px !important;
+  }
+  
+  /* Ajustar el calendario para pantallas extra pequeñas */
+  .dashboard__tabs + div > div:last-child {
+    height: 250px !important;
+    padding: 8px 6px !important;
+  }
+  
+  /* Ajustar el wrapper del calendario */
+  .calendario-wrapper {
+    transform: scale(0.65) !important;
+  }
+}
+
+.header__menu-btn {
+  display: none;
+}
+
+/* ===== ESTILOS DEL CALENDARIO ===== */
+/* Configuración del calendario react-day-picker */
+.calendario-day-picker {
+  --rdp-cell-size: 32px; /* Tamaño de celda legible */
+  --rdp-font-size: 0.875rem;
+  margin: 0;
+}
+
+/* Wrapper del calendario con escala */
+.calendario-wrapper {
+  transform: scale(0.85);
+  transform-origin: center center;
+  width: 100%;
+  text-align: center;
+}
+
+/* Estilo para los días con recordatorios (punto naranja) */
+.rdp-day_conRecordatorio {
+  position: relative;
+}
+
+/* Punto naranja para días con recordatorios */
+.rdp-day_conRecordatorio::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #f97316; /* Naranja para el punto */
+}
+
+/* Mantener el punto visible en días seleccionados */
+.rdp-day_selected.rdp-day_conRecordatorio::after {
+  background-color: #f97316;
+}
+
+/* Hacer visible el texto del calendario */
+.calendario-day-picker .rdp-caption_label,
+.calendario-day-picker .rdp-head_cell,
+.calendario-day-picker .rdp-day {
+  color: #374151; /* Gris oscuro para el texto */
+}
+
+/* Estilo para el día seleccionado (círculo azul) */
+.calendario-day-picker .rdp-day_selected,
+.calendario-day-picker .rdp-day_selected:hover {
+  background-color: transparent !important;
+  color: #2563eb !important; /* Texto del día seleccionado en azul */
+  border: 1.5px solid #2563eb;
+  border-radius: 50%;
+}
+
+/* Estilo para el día de hoy */
+.calendario-day-picker .rdp-day_today {
+  font-weight: bold;
+  color: #1d4ed8; /* Azul más oscuro para diferenciar */
+}
+
+/* Estilo hover para los días (no seleccionados) */
+.calendario-day-picker .rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: #eff6ff !important; /* Azul muy claro al pasar el mouse */
+  border-radius: 50%;
+}
+
+/* ===== TRANSICIÓN A OTROS MÓDULOS ===== */
+/* Contenedor para el módulo de apuntes */
+.apuntes-container {
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  .resumen__card {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+  }
+  .resumen__card img {
+    height: 90px !important;
+    max-width: 90px !important;
+    object-fit: contain !important;
+    margin-right: 18px !important;
+    margin-left: 0 !important;
+    z-index: 2;
+    display: block;
+  }
+  .resumen__info {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    width: auto !important;
+    min-width: 0 !important;
+  }
+  .resumen__valor {
+    font-size: 3.5rem !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    text-align: left !important;
+    margin-bottom: 0.2em !important;
+  }
+  .resumen__titulo {
+    font-size: 1.2rem !important;
+    font-weight: 500 !important;
+    margin-bottom: 0.1em !important;
+    line-height: 1.1 !important;
+    text-align: left !important;
+  }
+  .resumen__desc {
+    font-size: 1rem !important;
+    margin-bottom: 0.1em !important;
+    line-height: 1.1 !important;
+    text-align: left !important;
+  }
+}

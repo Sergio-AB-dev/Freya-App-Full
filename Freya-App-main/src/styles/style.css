@@ -1,0 +1,26 @@
+/* ===== ESTILOS GLOBALES DE LA APLICACIÓN ===== */
+
+/* Definición de fuentes personalizadas */
+@font-face {
+    font-family: "megabyte";
+    src: url("/public/ASSETS/megabyte-cufonfonts/MegabyteBold.otf") format("opentype");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "gidole";
+    src: url(/public/ASSETS/Gidole/Gidole-Regular.ttf) format("opentype");
+}
+
+/* Reset global de estilos para todos los elementos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    direction: ltr !important; /* Fuerza dirección de izquierda a derecha */
+}   
+
+/* Color de fondo principal de la aplicación */
+body {
+    background-color: #f8fafc;
+}

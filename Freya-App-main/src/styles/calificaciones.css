@@ -1,0 +1,487 @@
+/* ===== ESTILOS DEL MÓDULO DE CALIFICACIONES ===== */
+
+/* calificaciones.css */
+
+/* Eliminar estilos globales conflictivos */
+/* body {
+  font-family: 'Roboto', sans-serif;
+  color: #f1f7fb;
+  background-color: #0f172a;
+} */
+
+/* ===== DASHBOARD DE CALIFICACIONES ===== */
+/* Contenedor principal del dashboard de calificaciones */
+.calificaciones-dashboard__container {
+  padding: 32px 32px 0 32px;
+  min-height: 100vh;
+  background: #f8fafc;
+  font-family: 'gidole', Arial, sans-serif;
+}
+
+/* ===== BARRA SUPERIOR ===== */
+/* Barra superior con título y acciones */
+.calificaciones-dashboard__topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 16px;
+}
+
+/* Título principal del dashboard */
+.calificaciones-dashboard__title {
+  font-size: 2.1rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+/* Subtítulo del dashboard */
+.calificaciones-dashboard__subtitle {
+  color: #64748b;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+/* Contenedor de botones de acción */
+.calificaciones-dashboard__actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Estilo base de los botones */
+.calificaciones-dashboard__btn {
+  padding: 6px 13px;
+  border-radius: 7px;
+  border: 1.5px solid #e5e7eb;
+  background: #fff;
+  color: #2563eb;
+  font-weight: 500;
+  font-size: 0.97rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+/* Botón primario */
+.calificaciones-dashboard__btn--primary {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+}
+
+/* Efecto hover del botón primario */
+.calificaciones-dashboard__btn--primary:hover {
+  background: #1746a2;
+}
+
+/* ===== SISTEMA DE TABS ===== */
+/* Contenedor de tabs */
+.calificaciones-dashboard__tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+/* Estilo de cada tab */
+.tab {
+  padding: 8px 22px;
+  background: #f3f6fa;
+  border: none;
+  border-radius: 8px;
+  color: #2563eb;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+/* Estados activo, focus y hover de los tabs */
+.tab.active, .tab:focus, .tab:hover {
+  background: #2563eb;
+  color: #fff;
+}
+
+/* ===== TARJETA DE PROMEDIO GENERAL ===== */
+/* Tarjeta del promedio general */
+.calificaciones-dashboard__promedio-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.06);
+  padding: 22px 24px 18px 24px;
+  margin-bottom: 28px;
+  border: 1.5px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 100%;
+}
+
+/* Título de la tarjeta de promedio */
+.calificaciones-dashboard__promedio-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Descripción del promedio */
+.calificaciones-dashboard__promedio-desc {
+  color: #64748b;
+  font-size: 1.05rem;
+}
+
+/* Valor numérico del promedio */
+.calificaciones-dashboard__promedio-valor {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Fondo de la barra de progreso del promedio */
+.calificaciones-dashboard__promedio-bar-bg {
+  width: 100%;
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 2px;
+}
+
+/* Barra de progreso del promedio */
+.calificaciones-dashboard__promedio-bar {
+  height: 100%;
+  background: #2563eb;
+  border-radius: 8px 0 0 8px;
+  transition: width 0.4s;
+}
+
+/* Valor máximo del promedio */
+.calificaciones-dashboard__promedio-max {
+  color: #64748b;
+  font-size: 0.98rem;
+  align-self: flex-end;
+}
+
+/* ===== GRID DE MATERIAS ===== */
+/* Grid de tarjetas de materias */
+.calificaciones-dashboard__materias-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* Tarjeta individual de materia */
+.calificaciones-dashboard__materia-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.06);
+  padding: 18px 24px 18px 24px;
+  border: 1.5px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Header de la tarjeta de materia */
+.calificaciones-dashboard__materia-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Título de la materia */
+.calificaciones-dashboard__materia-title {
+  font-size: 1.2rem;
+  color: #222;
+  font-weight: 500;
+}
+
+/* Iconos de acción de la materia */
+.calificaciones-dashboard__materia-icons {
+  display: flex;
+  gap: 8px;
+  font-size: 1.15rem;
+  color: #222;
+  cursor: pointer;
+}
+
+/* Profesor de la materia */
+.calificaciones-dashboard__materia-prof {
+  color: #64748b;
+  font-size: 0.98rem;
+  margin-bottom: 2px;
+}
+
+/* Nota de la materia */
+.calificaciones-dashboard__materia-nota {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Fondo de la barra de progreso de la materia */
+.calificaciones-dashboard__materia-bar-bg {
+  width: 100%;
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+}
+
+/* Barra de progreso principal de la materia */
+.calificaciones-dashboard__materia-bar {
+  height: 100%;
+  border-radius: 8px 0 0 8px;
+  transition: width 0.4s;
+}
+
+/* Barra de progreso extra de la materia */
+.calificaciones-dashboard__materia-bar-extra {
+  height: 100%;
+  border-radius: 0 8px 8px 0;
+  transition: width 0.4s;
+}
+
+/* ===== MODALES ===== */
+/* Fondo del modal */
+.calificaciones-dashboard__modal-bg {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30, 41, 59, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Contenedor del modal */
+.calificaciones-dashboard__modal {
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px 28px;
+  min-width: 340px;
+  max-width: 420px;
+  box-shadow: 0 4px 32px rgba(60,60,120,0.13);
+  color: #222;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.calificaciones-dashboard__input {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #e5e7eb;
+  font-size: 1rem;
+  background: #fff;
+  color: #222;
+  outline: none;
+  transition: border 0.15s;
+}
+.calificaciones-dashboard__input:focus {
+  border: 1.5px solid #2563eb;
+}
+@media (max-width: 1100px) {
+  .calificaciones-dashboard__materias-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 800px) {
+  .calificaciones-dashboard__container {
+    padding: 18px 6px 0 6px;
+  }
+}
+@media (max-width: 700px) {
+  .calificaciones-dashboard__topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .calificaciones-dashboard__actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6px;
+  }
+  .calificaciones-dashboard__btn {
+    padding: 6px 13px;
+    font-size: 0.97rem;
+    border-radius: 7px;
+  }
+  .calificaciones-dashboard__title {
+    font-size: 1.45rem;
+  }
+  .calificaciones-dashboard__subtitle {
+    font-size: 1rem;
+  }
+  .detalle-materias__list {
+    flex-direction: row !important;
+    align-items: center !important;
+    padding: 12px 0 !important;
+  }
+  .detalle-materias__list-title {
+    display: flex !important;
+    align-items: center !important;
+    align-self: flex-start !important;
+    height: auto !important;
+    margin-bottom: 0 !important;
+    padding-left: 12px !important;
+    padding-right: 8px !important;
+    font-size: 1.1rem !important;
+    line-height: 1.08rem !important;
+    padding-top: 2px !important;
+    font-weight: bold !important;
+  }
+  .detalle-materias__item {
+    margin-top: 0 !important;
+    line-height: 1.08rem !important;
+  }
+}
+
+/* --- Detalle por Materia --- */
+.detalle-materias__grid {
+  display: flex;
+  gap: 32px;
+  margin-top: 24px;
+  min-height: 420px;
+}
+.detalle-materias__list {
+  min-width: 260px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.06);
+  border: 1.5px solid #e5e7eb;
+  padding: 24px 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  height: fit-content;
+}
+.detalle-materias__list-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 18px;
+  padding-left: 32px;
+}
+.detalle-materias__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 32px;
+  color: #374151;
+  font-size: 1.08rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  margin-bottom: 2px;
+}
+.detalle-materias__item.active, .detalle-materias__item:hover {
+  background: #2563eb;
+  color: #fff;
+}
+.detalle-materias__dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.detalle-materias__detail {
+  flex: 1;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.06);
+  border: 1.5px solid #e5e7eb;
+  padding: 32px 32px 24px 32px;
+  min-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.detalle-materias__detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  gap: 8px;
+}
+.detalle-materias__detail-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #222;
+}
+.detalle-materias__detail-prof {
+  color: #64748b;
+  font-size: 1.05rem;
+  margin-bottom: 2px;
+}
+.detalle-materias__detail-nota {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #2563eb;
+  margin-bottom: 2px;
+}
+.detalle-materias__detail-bar-bg {
+  width: 100%;
+  height: 12px;
+  background: #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 18px;
+}
+.detalle-materias__detail-bar {
+  height: 100%;
+  background: #2563eb;
+  border-radius: 8px 0 0 8px;
+  transition: width 0.4s;
+}
+.detalle-materias__table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+}
+.detalle-materias__table th, .detalle-materias__table td {
+  padding: 12px 8px;
+  text-align: left;
+  font-size: 1.05rem;
+}
+.detalle-materias__table th {
+  color: #64748b;
+  font-weight: 600;
+  border-bottom: 1.5px solid #e5e7eb;
+}
+.detalle-materias__table td {
+  color: #222;
+  border-bottom: 1px solid #f3f6fa;
+}
+.detalle-materias__table tr:last-child td {
+  border-bottom: none;
+}
+@media (max-width: 1100px) {
+  .detalle-materias__grid {
+    flex-direction: column;
+    gap: 18px;
+  }
+  .detalle-materias__list {
+    min-width: unset;
+    flex-direction: row;
+    padding: 12px 0;
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-bottom: 8px;
+  }
+  .detalle-materias__item {
+    padding: 10px 18px;
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+  .detalle-materias__detail {
+    min-width: unset;
+    padding: 18px 10px 18px 10px;
+  }
+}
+
+
+

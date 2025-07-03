@@ -1,0 +1,638 @@
+/* ===== ESTILOS DEL MÓDULO DE APUNTES ===== */
+
+/* ===== LAYOUT PRINCIPAL ===== */
+/* Contenedor principal del módulo de apuntes */
+.apuntes__container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Contenedor interno de apuntes */
+.apuntes {
+    margin: 0 auto;
+    width: 93%;
+    flex: 1;
+}
+
+/* ===== SECCIÓN DE BIENVENIDA ===== */
+/* Mensaje de bienvenida del módulo */
+.apuntes__bienvenida {
+    font-family: "gidole", sans-serif;
+    color: #f1f7fb;
+    width: 100%;
+    text-align: center;
+    font-size: 4svw;
+    margin: 50px auto 50px auto;
+}
+
+/* ===== BARRA DE BÚSQUEDA ===== */
+/* Contenedor de la barra de búsqueda */
+.apuntes__buscar {
+    margin: 50px auto 50px auto;
+    display: flex;
+    align-items: center;
+    border: 3px solid #1cb0f6;
+    width: 340px;
+    height: 45px;
+    border-radius: 8px 8px 8px 8px;
+    padding: 0 10px 0 10px;
+    box-shadow: 0px 0px 11px 0px rgba(28,176,246,1);
+}
+
+/* Campo de entrada de búsqueda */
+.apuntes__buscar__input {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: #f1f7fb;
+    font-size: 20px;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+    font-family: "gidole", sans-serif;
+}
+
+/* Icono de búsqueda */
+.apuntes__buscar svg {
+    width: 24px;
+    fill: #f1f7fb;
+}
+
+/* ===== CONTENEDOR DE APUNTES ===== */
+/* Contenedor principal de las tarjetas de apuntes */
+.apuntes__continer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-bottom: 50px;
+}
+
+/* ===== BOTÓN DE AGREGAR ===== */
+/* Botón para agregar nuevo apunte */
+.apuntes__agregar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 3px solid #f1f7fb;
+    border-radius: 20px 20px 20px 20px;
+    width: 15svw;
+    height: 15svw;
+    cursor: pointer;
+    box-shadow: 0px 0px 9px 0px rgba(241,247,251,1);
+}
+
+/* Icono del botón de agregar */
+.apuntes__agregar svg {
+    fill: #f1f7fb;
+    width: 50%;
+}
+
+/* ===== FORMULARIO DE CREACIÓN ===== */
+/* Contenedor del formulario de creación */
+.apuntes__continer--Creacion {
+    background-color: #1cb0f6;
+    width: 75svw;
+    font-family: "gidole", sans-serif;
+    border-radius: 15px 15px 15px 15px;
+}
+
+/* Sección de asignatura del formulario */
+.apuntes__continer--Creacion__asignatura {
+    display: flex;
+    align-items: center;
+    padding: 10px 0 10px 0;
+    border-bottom: 1px solid #f1f7fb;
+}
+
+/* Contenedor de botones de color */
+.apuntes__continer--Creacion__botones {
+    display: flex;
+    margin-left: auto;
+}
+
+/* Campo de entrada de asignatura */
+.apuntes__continer--Creacion__asignatura input { 
+    background-color: transparent;
+    color: #f1f7fb;
+    font-size: 20px;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+}
+
+/* Placeholder del campo de asignatura */
+.apuntes__continer--Creacion__asignatura input::placeholder {
+    color: #f1f7fb;
+}
+
+/* Botones de acción del formulario */
+.apuntes__continer--Creacion__asignatura button {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+}
+
+/* Iconos de los botones */
+.apuntes__continer--Creacion__asignatura button svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Campo de título del apunte */
+.apuntes__continer--Creacion__asignatura .apuntes__continer--Creacion__input-titulo {
+    font-size: 17px;
+}
+
+/* Botón de color azul */
+.apuntes__continer--Creacion__asignatura .apuntes__continer--Creacion__botones--color1 {
+    background-color: #1cb0f6;
+    border: 2px solid black;
+}
+
+/* Botón de color naranja */
+.apuntes__continer--Creacion__asignatura .apuntes__continer--Creacion__botones--color2 {
+    background-color: #ff8002;
+    border: 2px solid black;
+}
+
+/* Botón de color morado */
+.apuntes__continer--Creacion__asignatura .apuntes__continer--Creacion__botones--color3 {
+    background-color: #954ec1;
+    border: 2px solid black;
+}
+
+/* ===== ÁREA DE TEXTO ===== */
+/* Contenedor del área de texto */
+.apuntes__continer--Creacion__texto {
+    position: relative;
+    width: 100%;
+    height: 500px; 
+}
+
+/* Placeholder del área de texto */
+.apuntes__continer--Creacion__placeholder {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #f1f7fb;
+    pointer-events: none;
+    user-select: none;
+    font-size: 16px;
+    transition: opacity 0.2s;
+}
+
+/* Área editable de texto */
+.apuntes__continer--Creacion__editablebox {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #f1f7fb;
+    font-size: 16px;
+    overflow: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    outline: none;
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: embed !important;
+}
+
+/* ===== TARJETAS DE APUNTES GUARDADOS ===== */
+/* Tarjeta de apunte guardado */
+.apuntes__guardado__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #f1f7fb;
+    border-radius: 20px 20px 20px 20px;
+    width: 15svw;
+    height: 15svw;
+    cursor: pointer;
+}
+
+/* Nombre de la asignatura en la tarjeta */
+.apuntes__guardado__card--asignatura {
+    color: #f1f7fb;
+    font-size: 2svw;
+    font-family: "gidole", sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* Título del apunte en la tarjeta */
+.apuntes__guardado__card--titulo {
+    color: #f1f7fb;
+    font-size: 2svw;
+    font-family: "gidole", sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.apuntes__guardado__card--text {
+    overflow: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+}
+
+.apuntes__modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+}
+
+.apuntes__modal--visible {
+    display: flex;
+}
+
+.modal-edit {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-edit-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.footer {
+    width: 100%;
+    background-color: #1cb0f6;
+}
+
+.footer img {
+    width: 100%;
+    height: 100%;
+}
+
+.apuntes__continer--Creacion__textarea {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #f1f7fb;
+    font-size: 16px;
+    overflow: auto;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    outline: none;
+    direction: ltr !important;
+    text-align: left !important;
+    unicode-bidi: embed !important;
+}
+
+.apuntes__continer--Creacion__textarea::placeholder {
+    color: #f1f7fb !important;
+}
+
+.apuntes__modal--creacion .apuntes__continer--Creacion__textarea::placeholder {
+    color: white;
+}
+
+@media (max-width: 1030px) {
+    .apuntes__continer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .apuntes__agregar {
+        width: 100%;
+    }
+
+    .apuntes__agregar svg {
+        fill: #f1f7fb;
+        width: 10%;
+    }
+
+    .apuntes__guardado__card {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        border: 3px solid #f1f7fb;
+        border-radius: 20px 20px 20px 20px;
+        width: 100%;
+        height: 15svw;
+        cursor: pointer;
+    }
+
+    .apuntes__guardado__card--asignatura {
+        color: #f1f7fb;
+        font-size: 6svw;
+        font-family: "gidole", sans-serif;
+        text-align: center;
+        margin-top: 10px;
+        margin-right: 40px;
+    }
+
+    .apuntes__guardado__card--titulo {
+        color: #f1f7fb;
+        font-size: 6svw;
+        font-family: "gidole", sans-serif;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .apuntes__continer--Creacion {
+        background-color: #1cb0f6;
+        width: 100%;
+        font-family: "gidole", sans-serif;
+        border-radius: 15px 15px 15px 15px;
+    }
+
+    .apuntes__bienvenida {
+        font-size: 5svw;
+    }
+}
+
+/* Dashboard de Apuntes */
+.notes-dashboard__container {
+    padding: 32px 32px 0 32px;
+    min-height: 100vh;
+    background: #f8fafc;
+    font-family: 'gidole', Arial, sans-serif;
+}
+.notes-dashboard__topbar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    gap: 16px;
+}
+.notes-dashboard__title {
+    font-size: 2.1rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 2px;
+}
+.notes-dashboard__subtitle {
+    color: #64748b;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+.notes-dashboard__actions {
+    display: flex;
+    gap: 10px;
+}
+.notes-dashboard__btn {
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: 1.5px solid #e5e7eb;
+    background: #fff;
+    color: #2563eb;
+    font-weight: 500;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.notes-dashboard__btn--primary {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+}
+.notes-dashboard__btn--primary:hover {
+    background: #1746a2;
+}
+
+.notes-dashboard__searchbar {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: flex-start;
+}
+.notes-dashboard__searchbar input {
+    width: 350px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: 1.5px solid #e5e7eb;
+    font-size: 1rem;
+    background: #fff;
+    color: #222;
+    outline: none;
+    transition: border 0.15s;
+}
+.notes-dashboard__searchbar input:focus {
+    border: 1.5px solid #2563eb;
+}
+
+.notes-dashboard__cards {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+.notes-dashboard__card {
+    flex: 1 1 320px;
+    max-width: 370px;
+    min-width: 320px;
+    min-height: 260px;
+    background: #e3f0ff;
+    border: 2.5px solid #90c2fa;
+    border-radius: 12px;
+    padding: 24px 22px 18px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(60,60,120,0.06);
+}
+.notes-dashboard__card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+.notes-dashboard__card-header > div:first-child {
+    flex: 1 1 70%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+.notes-dashboard__card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #222;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    cursor: pointer;
+}
+.notes-dashboard__card-meta {
+    color: #64748b;
+    font-size: 0.98rem;
+    margin-bottom: 2px;
+}
+.notes-dashboard__card-icons {
+    display: flex;
+    gap: 8px;
+    font-size: 1.15rem;
+    color: #222;
+    cursor: pointer;
+}
+.notes-dashboard__card-content {
+    color: #222;
+    font-size: 1.05rem;
+    min-height: 48px;
+}
+.notes-dashboard__card-btn {
+    margin-top: 10px;
+    padding: 10px 0;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    background: #fff;
+    color: #222;
+    font-weight: 500;
+    font-size: 1.08rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    box-shadow: 0 1px 2px rgba(60,60,120,0.04);
+}
+.notes-dashboard__card-btn:hover {
+    background: #2563eb;
+    color: #fff;
+}
+
+/* Modal */
+.notes-dashboard__modal-bg {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(30, 41, 59, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.notes-dashboard__modal {
+    background: #fff;
+    border-radius: 14px;
+    padding: 32px 28px;
+    min-width: 340px;
+    max-width: 420px;
+    box-shadow: 0 4px 32px rgba(60,60,120,0.13);
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.notes-dashboard__modal-content {
+    white-space: pre-line;
+    width: 100%;
+    margin-bottom: 12px;
+}
+@media (max-width: 900px) {
+    .notes-dashboard__cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .notes-dashboard__container {
+        padding: 18px 6px 0 6px;
+    }
+}
+
+.notes-dashboard__input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #e5e7eb;
+    font-size: 1rem;
+    background: #fff;
+    color: #222;
+    outline: none;
+    transition: border 0.15s, box-shadow 0.15s;
+    margin-bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+.notes-dashboard__input:focus {
+    border: 1.5px solid #2563eb;
+    box-shadow: 0 0 0 2px rgba(37,99,235,0.13);
+}
+.notes-dashboard__input::placeholder {
+    color: #b0b0b0;
+    font-weight: 400;
+}
+
+@media (max-width: 700px) {
+    .notes-dashboard__topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .notes-dashboard__actions {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 6px;
+    }
+    .notes-dashboard__title {
+        font-size: 1.45rem;
+    }
+    .notes-dashboard__subtitle {
+        font-size: 1rem;
+    }
+    .notes-dashboard__container {
+        padding-left: 4vw;
+        padding-right: 4vw;
+    }
+    .notes-dashboard__card {
+        flex: none !important;
+        width: 92% !important;
+        margin: 0 auto 18px auto !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+        height: 320px !important;
+        min-height: 320px !important;
+        max-height: 320px !important;
+        overflow: hidden;
+    }
+    .notes-dashboard__card-content {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 5;
+        line-clamp: 5;
+        -webkit-box-orient: vertical;
+    }
+}
+
+@media (max-width: 1366px) {
+  .notes-dashboard__cards {
+    justify-content: flex-start !important;
+  }
+  .notes-dashboard__card {
+    flex: 0 1 320px !important;
+    max-width: 370px !important;
+    min-width: 320px !important;
+  }
+}
+
