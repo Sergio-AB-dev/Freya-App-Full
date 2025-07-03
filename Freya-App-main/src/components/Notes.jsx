@@ -70,6 +70,8 @@ const Notes = () => {
   // Estado de carga
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
+  // Estado para el avatar del usuario
+  const [avatarUrl, setAvatarUrl] = useState(null);
   
   // Escucho cambios de autenticación
   useEffect(() => {
@@ -137,7 +139,7 @@ const Notes = () => {
   const handleMenuClick = (option) => {
     setMenuOpen(false);
     if (option === 'perfil') navigate('/configuracion?tab=perfil');
-    if (option === 'configuracion') navigate('/configuracion');
+    if (option === 'seguridad') navigate('/configuracion?tab=seguridad');
     if (option === 'logout') navigate('/');
   };
 
@@ -247,7 +249,7 @@ const Notes = () => {
     setColorPicker({ show: false, id: null, x: 0, y: 0 });
   };
 
-  // Obtengo el nombre real del usuario desde Firestore
+  // Obtengo el nombre real y avatar del usuario desde Firestore
   useEffect(() => {
     if (!userId) return;
     const perfilRef = doc(db, 'usuarios', userId, 'perfil', 'datos');
@@ -256,6 +258,7 @@ const Notes = () => {
       let nombre = data?.profileData?.nombre || '';
       if (nombre) nombre = nombre.trim().split(' ')[0];
       setUserName(nombre || 'Usuario');
+      setAvatarUrl(data?.profileData?.avatar || null);
     });
     return () => unsubscribe();
   }, [userId]);
@@ -296,6 +299,7 @@ const Notes = () => {
           userMenuRef={userMenuRef}
           handleMenuClick={handleMenuClick}
           onMenuClick={() => setSidebarOpen(true)}
+          avatarUrl={avatarUrl}
         />
         {/* Contenido principal de apuntes */}
         <div className="notes-dashboard__container">

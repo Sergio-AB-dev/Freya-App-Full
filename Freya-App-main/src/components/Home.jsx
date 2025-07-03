@@ -142,6 +142,8 @@ const Home = () => {
   // Estado de carga
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
+  // Estado para el avatar del usuario
+  const [avatarUrl, setAvatarUrl] = useState(null);
 
   // Delay para mostrar el loader solo si la carga tarda más de 350ms
   useEffect(() => {
@@ -157,7 +159,7 @@ const Home = () => {
     return () => unsubscribe();
   }, []);
 
-  // Obtengo el nombre real del usuario desde Firestore
+  // Obtengo el nombre real del usuario y avatar desde Firestore
   useEffect(() => {
     if (!userId) return;
     const perfilRef = doc(db, 'usuarios', userId, 'perfil', 'datos');
@@ -167,6 +169,7 @@ const Home = () => {
       // Solo el primer nombre
       if (nombre) nombre = nombre.trim().split(' ')[0];
       setUserName(nombre || 'Usuario');
+      setAvatarUrl(data?.profileData?.avatar || null);
     });
     return () => unsubscribe();
   }, [userId]);
@@ -335,7 +338,7 @@ const Home = () => {
   const handleMenuClick = (option) => {
     setMenuOpen(false);
     if (option === 'perfil') navigate('/configuracion?tab=perfil');
-    if (option === 'configuracion') navigate('/configuracion');
+    if (option === 'seguridad') navigate('/configuracion?tab=seguridad');
     if (option === 'logout') navigate('/');
   };
 
@@ -423,6 +426,7 @@ const Home = () => {
           userMenuRef={userMenuRef}
           handleMenuClick={handleMenuClick}
           onMenuClick={() => setSidebarOpen(true)}
+          avatarUrl={avatarUrl}
         />
         {/* Contenido principal */}
         <div className="dashboard__content">

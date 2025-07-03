@@ -109,6 +109,8 @@ function Recordatorios() {
   // Estado de carga
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
+  // Estado para el avatar del usuario
+  const [avatarUrl, setAvatarUrl] = useState(null);
   
   // Escucho cambios de autenticación para obtener el ID del usuario
   useEffect(() => {
@@ -118,7 +120,7 @@ function Recordatorios() {
     return () => unsubscribe();
   }, []);
 
-  // Obtengo el nombre real del usuario desde Firestore
+  // Obtengo el nombre real y avatar del usuario desde Firestore
   useEffect(() => {
     if (!userId) return;
     const perfilRef = doc(db, 'usuarios', userId, 'perfil', 'datos');
@@ -127,6 +129,7 @@ function Recordatorios() {
       let nombre = data?.profileData?.nombre || '';
       if (nombre) nombre = nombre.trim().split(' ')[0];
       setUserName(nombre || 'Usuario');
+      setAvatarUrl(data?.profileData?.avatar || null);
     });
     return () => unsubscribe();
   }, [userId]);
@@ -170,7 +173,7 @@ function Recordatorios() {
   const handleMenuClick = (option) => {
     setMenuOpen(false);
     if (option === 'perfil') navigate('/configuracion?tab=perfil');
-    if (option === 'configuracion') navigate('/configuracion');
+    if (option === 'seguridad') navigate('/configuracion?tab=seguridad');
     if (option === 'logout') navigate('/');
   };
 
@@ -564,6 +567,7 @@ function Recordatorios() {
           userMenuRef={userMenuRef}
           handleMenuClick={handleMenuClick}
           onMenuClick={() => setSidebarOpen(true)}
+          avatarUrl={avatarUrl}
         />
         {/* Contenido principal */}
         <div className="dashboard__content">

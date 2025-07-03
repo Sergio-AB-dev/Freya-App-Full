@@ -8,7 +8,8 @@ const Header = ({
   setMenuOpen,
   userMenuRef,
   handleMenuClick,
-  onMenuClick
+  onMenuClick,
+  avatarUrl
 }) => (
   <header className="dashboard__header">
     <button
@@ -63,16 +64,20 @@ const Header = ({
       </span>
       <span
         className="header__user"
-        style={{ cursor: 'pointer', position: 'relative' }}
+        style={{ cursor: 'pointer', position: 'relative', display:'inline-flex', alignItems:'center', justifyContent:'center', width:40, height:40, borderRadius:'50%', background:'#e5e7eb' }}
         onClick={() => setMenuOpen((v) => !v)}
         ref={userMenuRef}
       >
-        {userInitial}
+        {avatarUrl ? (
+          <img src={avatarUrl} alt="avatar" style={{width:40, height:40, borderRadius:'50%', objectFit:'cover', overflow:'hidden'}} />
+        ) : (
+          userInitial
+        )}
         {menuOpen && (
-          <div className="user-menu-dropdown">
+          <div className="user-menu-dropdown" style={{position:'absolute', top:48, right:0, zIndex:1001}}>
             <div className="user-menu-title">Mi cuenta</div>
             <button className="user-menu-item" onClick={() => handleMenuClick('perfil')}>Perfil</button>
-            <button className="user-menu-item" onClick={() => handleMenuClick('configuracion')}>Configuración</button>
+            <button className="user-menu-item" onClick={() => handleMenuClick('seguridad')}>Seguridad</button>
             <button className="user-menu-item logout" onClick={() => handleMenuClick('logout')}>Cerrar sesión</button>
           </div>
         )}

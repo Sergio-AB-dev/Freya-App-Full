@@ -808,6 +808,44 @@ function Configuracion() {
   };
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  // Estado para mostrar el modal de selección de avatar
+  const [showAvatarModal, setShowAvatarModal] = useState(false);
+  // Lista de avatares disponibles (usando rutas públicas)
+  const avatarList = [
+    process.env.PUBLIC_URL + '/ASSETS/avatar1.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar2.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar3.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar4.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar5.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar6.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar7.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar8.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar9.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar10.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar11.jpg',
+    process.env.PUBLIC_URL + '/ASSETS/avatar mapache.png',
+    process.env.PUBLIC_URL + '/ASSETS/avatar pinguino.png',
+    process.env.PUBLIC_URL + '/ASSETS/avatar rana.png',
+    process.env.PUBLIC_URL + '/ASSETS/avatar erizo.png',
+    process.env.PUBLIC_URL + '/ASSETS/avatar conejillo-de-indias.png',
+  ];
+
+  // Nueva función para seleccionar avatar de la lista
+  const handleSelectAvatar = (avatarUrl) => {
+    setImagePreview(avatarUrl);
+    setAvatarFile(null); // No hay archivo personalizado
+    setShowAvatarModal(false);
+    setProfileData(prev => ({ ...prev, avatar: avatarUrl })); // Actualiza el avatar en el perfil
+  };
+
+  // Cuando se actualiza el perfil desde Firestore, actualizo la previsualización del avatar
+  useEffect(() => {
+    if (profileData && profileData.avatar) {
+      setImagePreview(profileData.avatar);
+    } else {
+      setImagePreview(null);
+    }
+  }, [profileData]);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -825,6 +863,7 @@ function Configuracion() {
             correo={profileData?.email || securityData.email}
             telefono={profileData?.telefono || 'No registrado'}
             nombre={profileData?.nombre || ''}
+            setShowAvatarModal={setShowAvatarModal}
           />
         );
       case 'seguridad':
@@ -886,6 +925,7 @@ function Configuracion() {
           userMenuRef={userMenuRef}
           handleMenuClick={handleMenuClick}
           onMenuClick={() => setSidebarOpen(true)}
+          avatarUrl={profileData?.avatar || null}
         />
         <div className="configuracion-wrapper">
           <div className="main-content-config">
@@ -903,6 +943,20 @@ function Configuracion() {
             </div>
             <div className="tab-content">
               {renderContent()}
+              {/* Modal de selección de avatar */}
+              {showAvatarModal && (
+                <div className="avatar-modal-overlay" style={{position:'fixed',top:0,left:0,right:0,bottom:0,background:'rgba(0,0,0,0.4)',zIndex:1000,display:'flex',alignItems:'center',justifyContent:'center'}}>
+                  <div className="avatar-modal" style={{background:'#fff',padding:24,borderRadius:12,boxShadow:'0 2px 16px rgba(0,0,0,0.18)',maxWidth:420}}>
+                    <h3 style={{marginBottom:16, color:'#222'}}>Selecciona tu avatar</h3>
+                    <div style={{display:'flex',flexWrap:'wrap',gap:12,justifyContent:'center'}}>
+                      {avatarList.map((avt, idx) => (
+                        <img key={idx} src={avt} alt={`avatar${idx+1}`} style={{width:64,height:64,borderRadius:'50%',border:'2px solid #2563eb',cursor:'pointer',objectFit:'cover'}} onClick={()=>handleSelectAvatar(avt)} />
+                      ))}
+                    </div>
+                    <button className="btn-secondary" style={{marginTop:20}} onClick={()=>setShowAvatarModal(false)}>Cancelar</button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -911,7 +965,7 @@ function Configuracion() {
   );
 }
 
-const ProfileSection = ({ profileData, handleInputChange, imagePreview, onImageChange, onImageRemove, onSave, isSaving, securityData, correo, telefono, nombre }) => {
+const ProfileSection = ({ profileData, handleInputChange, imagePreview, onImageChange, onImageRemove, onSave, isSaving, securityData, correo, telefono, nombre, setShowAvatarModal }) => {
   const fileInputRef = useRef(null);
   
   return (
@@ -936,7 +990,7 @@ const ProfileSection = ({ profileData, handleInputChange, imagePreview, onImageC
             style={{ display: 'none' }} 
           />
           <div className="avatar-buttons">
-            <button className="btn-secondary" onClick={() => fileInputRef.current.click()}>
+            <button className="btn-secondary" onClick={() => setShowAvatarModal(true)}>
               Cambiar
             </button>
             <button className="btn-danger" onClick={onImageRemove}>
