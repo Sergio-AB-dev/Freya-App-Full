@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Freya-App/static/css/main.ee62fde2.css",
-    "main.js": "/Freya-App/static/js/main.8b8687bd.js",
-    "static/media/MegabyteBold.otf": "/Freya-App/static/media/MegabyteBold.b5bf70c59f195d33c8e5.otf",
-    "static/media/Gidole-Regular.ttf": "/Freya-App/static/media/Gidole-Regular.08bea7a124352fbf8bfa.ttf",
-    "static/media/controlar.svg": "/Freya-App/static/media/controlar.a9423def4c7e9f1d791c832b06b33ee6.svg",
-    "index.html": "/Freya-App/index.html",
-    "main.ee62fde2.css.map": "/Freya-App/static/css/main.ee62fde2.css.map",
-    "main.8b8687bd.js.map": "/Freya-App/static/js/main.8b8687bd.js.map"
+    "main.css": "/Freya-App-Full/static/css/main.2b8b8fed.css",
+    "main.js": "/Freya-App-Full/static/js/main.d1989a3b.js",
+    "static/media/MegabyteBold.otf": "/Freya-App-Full/static/media/MegabyteBold.b5bf70c59f195d33c8e5.otf",
+    "static/media/Gidole-Regular.ttf": "/Freya-App-Full/static/media/Gidole-Regular.08bea7a124352fbf8bfa.ttf",
+    "static/media/controlar.svg": "/Freya-App-Full/static/media/controlar.a9423def4c7e9f1d791c832b06b33ee6.svg",
+    "index.html": "/Freya-App-Full/index.html",
+    "main.2b8b8fed.css.map": "/Freya-App-Full/static/css/main.2b8b8fed.css.map",
+    "main.d1989a3b.js.map": "/Freya-App-Full/static/js/main.d1989a3b.js.map"
   },
   "entrypoints": [
-    "static/css/main.ee62fde2.css",
-    "static/js/main.8b8687bd.js"
+    "static/css/main.2b8b8fed.css",
+    "static/js/main.d1989a3b.js"
   ]
 }
