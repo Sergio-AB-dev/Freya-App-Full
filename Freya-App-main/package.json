@@ -1,7 +1,7 @@
 {
   "name": "freya-app",
   "version": "0.1.0",
-  "homepage": "https://sergio-ab-dev.github.io/Freya-App",
+  "homepage": "https://Sergio-AB-dev.github.io/Freya-App-Full",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
