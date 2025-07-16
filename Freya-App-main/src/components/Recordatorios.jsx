@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Swal from 'sweetalert2';
 import '../styles/recordatorios.css';
-import { db, auth } from '../firebase'; // Importa la instancia de Firestore
+import { db, auth } from '../firebase';
 import {
   collection,
   doc,
@@ -16,26 +16,20 @@ import { onAuthStateChanged } from 'firebase/auth';
 import Header from './Header';
 import Sidebar from './Sidebar';
 
-// Función auxiliar para convertir fecha de Firestore a objeto Date de JS
-// Manejo diferentes formatos de fecha que pueden venir de Firestore
 const convertFirestoreDate = (dateValue) => {
   if (!dateValue) return null;
-  // Si es un objeto Timestamp de Firestore
   if (typeof dateValue.toDate === 'function') {
     return dateValue.toDate();
   }
-  // Si es un string (formato ISO)
   if (typeof dateValue === 'string') {
     const date = new Date(dateValue);
-    // Verificar que el string se haya podido convertir a una fecha válida
     if (!isNaN(date.getTime())) {
       return date;
     }
   }
-  return null; // Devolver null si el formato no es reconocido
+  return null;
 };
 
-// Loader visual reutilizable
 const Loader = () => (
   <div style={{display:'flex',justifyContent:'center',alignItems:'center',height:'70vh',width:'100%'}}>
     <div className="loader-spinner" style={{width:60,height:60,border:'6px solid #e0e7ef',borderTop:'6px solid #2563eb',borderRadius:'50%',animation:'spin 1s linear infinite'}}></div>
@@ -44,19 +38,23 @@ const Loader = () => (
 );
 
 function Recordatorios() {
-  // Función para formatear la fecha y hora de manera legible
+  // Función para truncar texto con puntos suspensivos
+  const truncarTexto = (texto, maxLength) => {
+    if (!texto) return '';
+    if (texto.length <= maxLength) return texto;
+    return texto.substring(0, maxLength) + '...';
+  };
+
   const formatDate = (dateValue) => {
     const date = convertFirestoreDate(dateValue);
     if (!date) return { fecha: 'Fecha inválida', hora: '' };
     
-    // Formatear la fecha en español con día de la semana
     const fechaFormateada = date.toLocaleDateString('es-ES', {
       weekday: 'long',
       day: '2-digit',
       month: 'long'
     });
 
-    // Extraer solo la hora en formato HH:mm
     const hora = date.toTimeString().split(' ')[0].substring(0, 5);
 
     return {
@@ -65,18 +63,14 @@ function Recordatorios() {
     };
   };
 
-  // Estado que mantiene la lista de recordatorios del usuario
   const [recordatorios, setRecordatorios] = useState(null);
-  // Estado para controlar qué tab está activo (recordatorios o notificaciones)
   const [tab, setTab] = useState('recordatorios');
-  // Definición de los tipos de recordatorio con sus colores
   const tipos = [
     { value: 'Examen', color: '#fee2e2', text: '#b91c1c' },
     { value: 'Tarea', color: '#dcfce7', text: '#166534' },
     { value: 'Presentación', color: '#f3e8ff', text: '#7c3aed' },
     { value: 'Administrativo', color: '#dbeafe', text: '#1e40af' },
   ];
-  // Estado para el formulario de nuevo recordatorio
   const [nuevoRecordatorio, setNuevoRecordatorio] = useState({
     titulo: '',
     descripcion: '',
@@ -84,35 +78,22 @@ function Recordatorios() {
     hora: '',
     tipo: tipos[0].value,
   });
-  // Estado para manejar la edición de un recordatorio existente
   const [editando, setEditando] = useState(null);
-  // Estado para mostrar/ocultar el modal de nuevo recordatorio
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
-  // Estado para mostrar/ocultar el modal de edición
   const [mostrarModalEdicion, setMostrarModalEdicion] = useState(false);
-  // Estado para almacenar la hora actual (se actualiza cada minuto)
   const [ahora, setAhora] = useState(new Date());
-  // Estado del menú de usuario
   const [menuOpen, setMenuOpen] = useState(false);
-  // Referencia para cerrar el menú de usuario al hacer click fuera
   const userMenuRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
-  // Nombre del usuario autenticado
   const [userName, setUserName] = useState(null);
-  // Inicial para el avatar del usuario
   const userInitial = userName?.[0]?.toUpperCase() || 'U';
-  // -------------------- Usuario autenticado --------------------
-  // ID del usuario autenticado
   const [userId, setUserId] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  // Estado de carga
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(false);
-  // Estado para el avatar del usuario
   const [avatarUrl, setAvatarUrl] = useState(null);
   
-  // Escucho cambios de autenticación para obtener el ID del usuario
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUserId(user ? user.uid : null);
@@ -120,7 +101,6 @@ function Recordatorios() {
     return () => unsubscribe();
   }, []);
 
-  // Obtengo el nombre real y avatar del usuario desde Firestore
   useEffect(() => {
     if (!userId) return;
     const perfilRef = doc(db, 'usuarios', userId, 'perfil', 'datos');
@@ -134,8 +114,6 @@ function Recordatorios() {
     return () => unsubscribe();
   }, [userId]);
 
-  // -------------------- Sincronizar recordatorios con Firestore en tiempo real --------------------
-  // Escucho cambios en la colección de recordatorios del usuario
   useEffect(() => {
     if (!userId) return;
     const recordatoriosCollectionRef = collection(db, 'usuarios', userId, 'recordatorios');
@@ -146,7 +124,6 @@ function Recordatorios() {
     return () => unsubscribe();
   }, [userId]);
 
-  // Actualizo la hora actual cada minuto para las notificaciones
   useEffect(() => {
     const timer = setInterval(() => {
       setAhora(new Date());
@@ -154,7 +131,6 @@ function Recordatorios() {
     return () => clearInterval(timer);
   }, []);
 
-  // Cierro el menú si se hace click fuera de él
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
@@ -169,7 +145,6 @@ function Recordatorios() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [menuOpen]);
 
-  // Manejo las opciones del menú de usuario
   const handleMenuClick = (option) => {
     setMenuOpen(false);
     if (option === 'perfil') navigate('/configuracion?tab=perfil');
@@ -177,25 +152,20 @@ function Recordatorios() {
     if (option === 'logout') navigate('/');
   };
 
-  // -------------------- Funciones de gestión de recordatorios --------------------
-  // Cambio el estado de completado de un recordatorio
   const toggleCompletado = async (id) => {
     if (!userId) return;
     const recordatorioDocRef = doc(db, 'usuarios', userId, 'recordatorios', id);
-    const recordatorio = recordatorios.find((r) => r.id === id); // Buscar el recordatorio por id
+    const recordatorio = recordatorios.find((r) => r.id === id);
     if (recordatorio) {
       try {
-        // Actualizo el estado de "completado" en Firestore
         await updateDoc(recordatorioDocRef, { completado: !recordatorio.completado });
       } catch (error) {
-        // Manejo de errores si no se pudo actualizar el estado
         console.error('Error al actualizar el estado de completado:', error);
         Swal.fire('Error', 'No se pudo actualizar el recordatorio.', 'error');
       }
     }
   };
 
-  // Obtengo la fecha actual en formato YYYY-MM-DD para el input date
   const getFechaMinima = () => {
     const hoy = new Date();
     const year = hoy.getFullYear();
@@ -204,67 +174,52 @@ function Recordatorios() {
     return `${year}-${month}-${day}`;
   };
 
-  // Obtengo la hora actual en formato HH:mm
   const getHoraActual = () => {
     const ahora = new Date();
     const hours = String(ahora.getHours()).padStart(2, '0');
     const minutes = String(ahora.getMinutes()).padStart(2, '0');
-    const horaActual = `${hours}:${minutes}`;
-    return horaActual;
+    return `${hours}:${minutes}`;
   };
 
-  // Verifico si una hora es válida para la fecha seleccionada
   const esHoraValida = (fecha, hora) => {
     if (!fecha || !hora) return true;
     
     const fechaSeleccionada = new Date(fecha);
     const fechaHoy = new Date();
     
-    // Si la fecha es hoy, verifico que la hora no haya pasado
     if (fechaSeleccionada.toDateString() === fechaHoy.toDateString()) {
       const horaActual = getHoraActual();
       return hora >= horaActual;
     }
     
-    // Si la fecha es futura, cualquier hora es válida
     return fechaSeleccionada > fechaHoy;
   };
 
-  // Obtengo el atributo min del input de hora para restringir horas pasadas
   const getHoraMinima = (fecha) => {
     if (!fecha) return undefined;
     
     const fechaSeleccionada = new Date(fecha);
     const fechaHoy = new Date();
     
-    // Si la fecha es hoy, uso la hora actual como mínimo
     if (fechaSeleccionada.toDateString() === fechaHoy.toDateString()) {
       return getHoraActual();
     }
     
-    // Si la fecha es futura, no hay restricción
     return undefined;
   };
 
-  // Renderizo el selector de hora personalizado con validación
   const renderSelectorHora = (value, onChange, fecha, placeholder = "Selecciona hora") => {
     const opciones = [];
     const ahora = new Date();
     const horaActual = `${String(ahora.getHours()).padStart(2, '0')}:${String(ahora.getMinutes()).padStart(2, '0')}`;
     
-    // Corrijo problema de timezone con la fecha del input
     let esHoy = false;
-    let fechaSeleccionadaString = 'No hay fecha';
     if (fecha) {
-        // El input date devuelve 'YYYY-MM-DD'. Para evitar problemas de timezone,
-        // lo separo y creo la fecha en la zona horaria local.
         const [year, month, day] = fecha.split('-').map(Number);
-        const fechaSeleccionada = new Date(year, month - 1, day); // Meses son 0-indexados
+        const fechaSeleccionada = new Date(year, month - 1, day);
         esHoy = fechaSeleccionada.toDateString() === ahora.toDateString();
-        fechaSeleccionadaString = fechaSeleccionada.toDateString();
     }
     
-    // Genero opciones de hora cada 15 minutos
     for (let hora = 0; hora < 24; hora++) {
       for (let minuto = 0; minuto < 60; minuto += 15) {
         const horaStr = `${String(hora).padStart(2, '0')}:${String(minuto).padStart(2, '0')}`;
@@ -327,8 +282,6 @@ function Recordatorios() {
     );
   };
 
-  // -------------------- Operaciones CRUD con Firestore --------------------
-  // Agrego un nuevo recordatorio a Firestore
   const agregarRecordatorio = async () => {
     if (!userId) return;
     const recordatoriosCollectionRef = collection(db, 'usuarios', userId, 'recordatorios');
@@ -346,7 +299,6 @@ function Recordatorios() {
       return;
     }
 
-    // Combino fecha y hora en un solo timestamp
     const fechaHora = new Date(`${nuevoRecordatorio.fecha}T${nuevoRecordatorio.hora}`);
 
     try {
@@ -370,7 +322,6 @@ function Recordatorios() {
     }
   };
 
-  // Elimino un recordatorio de Firestore
   const eliminarRecordatorio = async (id) => {
     if (!userId) return;
     const recordatorioDocRef = doc(db, 'usuarios', userId, 'recordatorios', id);
@@ -387,16 +338,14 @@ function Recordatorios() {
     if (!result.isConfirmed) return;
 
     try {
-      await deleteDoc(recordatorioDocRef); // Elimino el recordatorio en Firestore
+      await deleteDoc(recordatorioDocRef);
       Swal.fire('Eliminado!', 'El recordatorio ha sido eliminado.', 'success');
     } catch (error) {
-      // Manejo de errores si no se pudo eliminar
       console.error('Error al eliminar recordatorio:', error);
       Swal.fire('Error', 'No se pudo eliminar el recordatorio.', 'error');
     }
   };
 
-  // Inicio la edición de un recordatorio existente
   const iniciarEdicion = (id) => {
     const recordatorioAEditar = recordatorios.find((r) => r.id === id);
     if (!recordatorioAEditar) {
@@ -412,9 +361,8 @@ function Recordatorios() {
       return;
     }
 
-    // FIX: Uso los componentes locales de la fecha para evitar errores de timezone.
     const year = fechaObj.getFullYear();
-    const month = String(fechaObj.getMonth() + 1).padStart(2, '0'); // getMonth() es 0-indexado
+    const month = String(fechaObj.getMonth() + 1).padStart(2, '0');
     const day = String(fechaObj.getDate()).padStart(2, '0');
     const fecha = `${year}-${month}-${day}`;
 
@@ -424,7 +372,6 @@ function Recordatorios() {
     setMostrarModalEdicion(true);
   };
 
-  // Verifico si la hora actual del recordatorio es válida
   const verificarHoraValida = (fecha, hora) => {
     if (!fecha || !hora) return true;
     
@@ -440,7 +387,6 @@ function Recordatorios() {
     return true;
   };
 
-  // Guardo los cambios al editar un recordatorio
   const guardarEdicion = async () => {
     if (!editando?.titulo || !editando?.descripcion || !editando?.fecha || !editando?.hora) {
       Swal.fire({
@@ -487,15 +433,11 @@ function Recordatorios() {
     }
   };
 
-  // -------------------- Handlers de formularios --------------------
-  // Manejo el cambio de fecha en el formulario de edición
   const handleFechaChange = (nuevaFecha) => {
     setEditando(prev => ({ ...prev, fecha: nuevaFecha }));
   };
 
-  // Manejo el cambio de hora en el formulario de edición
   const handleHoraChange = (nuevaHora) => {
-    // Si la nueva hora no es válida para la fecha actual, muestro advertencia
     if (editando?.fecha && !verificarHoraValida(editando.fecha, nuevaHora)) {
       Swal.fire({
         title: 'Hora no válida',
@@ -507,40 +449,33 @@ function Recordatorios() {
         timer: 3000,
         timerProgressBar: true,
       });
-      return; // No actualizo la hora si no es válida
+      return;
     }
     
     setEditando(prev => ({ ...prev, hora: nuevaHora }));
   };
 
-  // Manejo el cambio de fecha en el formulario de nuevo recordatorio
   const handleNuevaFechaChange = (nuevaFecha) => {
     setNuevoRecordatorio(prev => ({ ...prev, fecha: nuevaFecha }));
   };
 
-  // Manejo el cambio de hora en el formulario de nuevo recordatorio
   const handleNuevaHoraChange = (nuevaHora) => {
     setNuevoRecordatorio(prev => ({ ...prev, hora: nuevaHora }));
   };
 
-  // -------------------- Preparación de datos para la interfaz --------------------
-  // Separo recordatorios pendientes y completados
   const pendientes = (recordatorios || []).filter(r => !r.completado);
   const completados = (recordatorios || []).filter(r => r.completado);
 
-  // Calculo notificaciones activas: recordatorios pendientes cuya fecha y hora ya han pasado
   const notificacionesActivas = (pendientes || []).filter(r => {
     const fechaRecordatorio = convertFirestoreDate(r.fecha);
     return fechaRecordatorio instanceof Date && fechaRecordatorio <= ahora;
   });
 
-  // Delay para mostrar el loader solo si la carga tarda más de 350ms
   useEffect(() => {
     const timer = setTimeout(() => setShowLoader(true), 350);
     return () => clearTimeout(timer);
   }, []);
 
-  // Cuando recordatorios y userName están listos, oculto el loader
   useEffect(() => {
     if (userId && userName !== null && recordatorios !== null) {
       setLoading(false);
@@ -553,11 +488,8 @@ function Recordatorios() {
 
   return (
     <div className="dashboard__container">
-      {/* Sidebar */}
       <Sidebar location={location} navigate={navigate} open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-      {/* Main */}
       <div className="dashboard__main">
-        {/* Header */}
         <Header
           notificaciones={notificacionesActivas.length}
           onNotificacionesClick={() => navigate('/recordatorios')}
@@ -569,7 +501,6 @@ function Recordatorios() {
           onMenuClick={() => setSidebarOpen(true)}
           avatarUrl={avatarUrl}
         />
-        {/* Contenido principal */}
         <div className="dashboard__content">
           <div style={{display:'flex', alignItems:'flex-end', justifyContent:'space-between', marginBottom:18, marginTop:0}}>
             <div>
@@ -580,7 +511,6 @@ function Recordatorios() {
               + Nuevo Recordatorio
             </button>
           </div>
-          {/* Tabs */}
           <div className="tabs-pill">
             <button className={`tab-pill${tab==='recordatorios'?' active':''}`} onClick={()=>setTab('recordatorios')}><span className="tab-icon">📅</span>Recordatorios</button>
             <button className={`tab-pill${tab==='notificaciones'?' active':''}`} onClick={()=>setTab('notificaciones')}>
@@ -590,7 +520,6 @@ function Recordatorios() {
               </span>
             </button>
           </div>
-          {/* Contenido de tabs */}
           {tab==='recordatorios' && (
             <>
               <div className="reminders-section-title">Pendientes</div>
@@ -598,14 +527,16 @@ function Recordatorios() {
                 {pendientes.length === 0 && <div className="empty-state">No tienes recordatorios pendientes.</div>}
                 {pendientes.map(r => {
                   const tipoInfo = tipos.find(t => t.value === r.tipo) || { color: '#e5e7eb', text: '#222' };
-                  // Formato de fecha y hora
                   const { fecha, hora } = formatDate(r.fecha);
                   return (
                     <div key={r.id} className={`reminder-card${r.completado ? ' completed' : ''}`}>  
                       <div className="reminder-header" style={{marginBottom:0, alignItems:'flex-start'}}>
                         <div className="reminder-header-main" style={{gap:0}}>
                           <div style={{display:'flex', alignItems:'center', justifyContent:'space-between', width:'100%'}}>
-                            <h3 className="reminder-title" style={{marginBottom:0}}>{r.titulo}</h3>
+                            {/* Título truncado a 15 caracteres */}
+                            <h3 className="reminder-title" style={{marginBottom:0}} title={r.titulo}>
+                              {truncarTexto(r.titulo, 15)}
+                            </h3>
                             <div className="reminder-actions" style={{marginLeft:16, display:'flex', gap:8}}>
                               <button
                                 className={`status-btn${r.completado ? ' completed' : ''}`}
@@ -667,7 +598,10 @@ function Recordatorios() {
                     <div key={r.id} className={`reminder-card${r.completado ? ' completed' : ''}`}>
                       <div className="reminder-header">
                         <div className="reminder-header-main">
-                          <h3 className="reminder-title">{r.titulo}</h3>
+                          {/* Título truncado a 15 caracteres */}
+                          <h3 className="reminder-title" title={r.titulo}>
+                            {truncarTexto(r.titulo, 15)}
+                          </h3>
                           <div className="reminder-header-meta">
                             <span className="reminder-type-label" style={{background: tipoInfo.color, color: tipoInfo.text}}>{r.tipo}</span>
                             <span className="reminder-date">{formatDate(r.fecha).fecha}</span>
@@ -726,7 +660,10 @@ function Recordatorios() {
                   <div key={r.id} className={`reminder-card${r.completado ? ' completed' : ''}`}>
                     <div className="reminder-header">
                       <div className="reminder-header-main">
-                        <h3 className="reminder-title">{r.titulo}</h3>
+                        {/* Título truncado a 15 caracteres */}
+                        <h3 className="reminder-title" title={r.titulo}>
+                          {truncarTexto(r.titulo, 15)}
+                        </h3>
                         <div className="reminder-header-meta">
                           <span className="reminder-type-label" style={{background: tipoInfo.color, color: tipoInfo.text}}>{r.tipo}</span>
                           <span className="reminder-date">{formatDate(r.fecha).fecha}</span>
@@ -775,7 +712,6 @@ function Recordatorios() {
               })}
             </div>
           )}
-          {/* Modal para agregar un nuevo recordatorio */}
           {mostrarFormulario && (
             <div className="modal-overlay" style={{
               position: 'fixed',
@@ -850,9 +786,9 @@ function Recordatorios() {
                       outline: 'none',
                       transition: 'border-color 0.15s ease-in-out',
                     }}
-                    maxLength={15}
+                    maxLength={60}
                   />
-                  <div style={{fontSize:'0.92em', color:'#94a3b8', textAlign:'right', marginTop: '4px'}}>{(nuevoRecordatorio.titulo?.length || 0)}/15</div>
+                  <div style={{fontSize:'0.92em', color:'#94a3b8', textAlign:'right', marginTop: '4px'}}>{(nuevoRecordatorio.titulo?.length || 0)}/60</div>
                 </div>
 
                 <div style={{ marginBottom: '16px' }}>
@@ -1010,7 +946,6 @@ function Recordatorios() {
               </div>
             </div>
           )}
-          {/* Modal para editar un recordatorio */}
           {mostrarModalEdicion && (
             <div className="modal-overlay" style={{
               position: 'fixed',
@@ -1084,9 +1019,9 @@ function Recordatorios() {
                       outline: 'none',
                       transition: 'border-color 0.15s ease-in-out',
                     }}
-                    maxLength={15}
+                    maxLength={60}
                   />
-                  <div style={{fontSize:'0.92em', color:'#94a3b8', textAlign:'right', marginTop: '4px'}}>{(editando?.titulo?.length || 0)}/15</div>
+                  <div style={{fontSize:'0.92em', color:'#94a3b8', textAlign:'right', marginTop: '4px'}}>{(editando?.titulo?.length || 0)}/60</div>
                 </div>
 
                 <div style={{ marginBottom: '16px' }}>
@@ -1249,6 +1184,5 @@ function Recordatorios() {
 }
 
 export default Recordatorios;
-
 
 
