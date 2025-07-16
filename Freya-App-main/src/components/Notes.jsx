@@ -378,7 +378,7 @@ const Notes = () => {
           )}
           {/* Modal Nuevo/Editar Apunte */}
           {modalNuevo && (
-            <div className="notes-dashboard__modal-bg" onClick={() => {setModalNuevo(false); setEditId(null);}}>
+            <div className="notes-dashboard__modal-bg">
               <div className="notes-dashboard__modal" onClick={e => e.stopPropagation()} style={{maxWidth:440, width:'100%'}}>
                 <h2 style={{fontWeight:700, fontSize:'1.35rem', marginBottom:18, color:'#2563eb'}}>{editId ? 'Editar Apunte' : 'Nuevo Apunte'}</h2>
                 <form className="notes-dashboard__modal-form" autoComplete="off" onSubmit={e => {e.preventDefault(); guardarNuevo();}} style={{width:'100%'}}>

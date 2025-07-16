@@ -850,9 +850,9 @@ function Recordatorios() {
                       outline: 'none',
                       transition: 'border-color 0.15s ease-in-out',
                     }}
-                    maxLength={60}
+                    maxLength={15}
                   />
-                  <div style={{fontSize:'0.92em', color:'#94a3b8', textAlign:'right', marginTop: '4px'}}>{(nuevoRecordatorio.titulo?.length || 0)}/60</div>
+                  <div style={{fontSize:'0.92em', color:'#94a3b8', textAlign:'right', marginTop: '4px'}}>{(nuevoRecordatorio.titulo?.length || 0)}/15</div>
                 </div>
 
                 <div style={{ marginBottom: '16px' }}>
@@ -1084,9 +1084,9 @@ function Recordatorios() {
                       outline: 'none',
                       transition: 'border-color 0.15s ease-in-out',
                     }}
-                    maxLength={60}
+                    maxLength={15}
                   />
-                  <div style={{fontSize:'0.92em', color:'#94a3b8', textAlign:'right', marginTop: '4px'}}>{(editando?.titulo?.length || 0)}/60</div>
+                  <div style={{fontSize:'0.92em', color:'#94a3b8', textAlign:'right', marginTop: '4px'}}>{(editando?.titulo?.length || 0)}/15</div>
                 </div>
 
                 <div style={{ marginBottom: '16px' }}>

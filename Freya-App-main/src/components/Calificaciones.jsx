@@ -440,7 +440,7 @@ function Calificaciones() {
     if (p > 1 && p < 2) return '#f97316'; // naranja
     if (p >= 2 && p < 3) return '#facc15'; // amarillo
     if (p >= 3 && p <= 4) return '#2563eb'; // azul (antes verde claro)
-    if (p > 4 && p <= 5) return '#4ade80'; // verde claro (antes verde oscuro)
+    if (p > 4 && p <= 5) return '#00F510'; // verde personalizado
     return '#e5e7eb';
   };
 
